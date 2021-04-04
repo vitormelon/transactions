@@ -12,14 +12,12 @@ services:
     env_file:
       - .env
 
-  mysql:
-    container_name: "mysql"
+  db:
     image: mysql:5.7
     env_file:
       - .env
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: transaction
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
     ports:
       - "3306:3306"
     volumes:
