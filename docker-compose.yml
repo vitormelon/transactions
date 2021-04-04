@@ -1,0 +1,26 @@
+version: "3.3"
+
+services:
+  app:
+    container_name: "app"
+    build:
+      context: .
+    ports:
+      - 8080:8080
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+
+  mysql:
+    container_name: "mysql"
+    image: mysql:5.7
+    env_file:
+      - .env
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: transaction
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./DataBase/database_init.sql:/docker-entrypoint-initdb.d/init.sql:rw
