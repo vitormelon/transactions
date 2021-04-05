@@ -20,6 +20,7 @@ func main() {
 	r.GET("/transactions/:transactionId", controllers.FindTransaction)
 
 	models.ConnectDataBase()
+	models.InsertDefaultOperationTypes()
 
 	r.Run()
 }
