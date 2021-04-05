@@ -1,9 +1,9 @@
 
 -- INSERT
 --     INTO
---         `operations` (`description`, `type`)
+--         `operations` (`description`)
 --     VALUES
---         ('COMPRA A VISTA', 'DEBIT'),
---         ('COMPRA PARCELADA', 'DEBIT'),
---         ('SAQUE', 'DEBIT'),
---         ('PAGAMENTO', 'CREDIT');
+--         ('COMPRA A VISTA'),
+--         ('COMPRA PARCELADA'),
+--         ('SAQUE'),
+--         ('PAGAMENTO');

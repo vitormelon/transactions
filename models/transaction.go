@@ -5,9 +5,11 @@ import (
 )
 
 type Transaction struct {
-	ID          uint `json:"id" gorm:"primaryKey;autoIncrement"`
-	AccountId   uint
-	OperationId uint
-	Ammount     float64
-	CreatedAt   time.Time
+	ID        uint `json:"id" gorm:"primaryKey;autoIncrement"`
+	AccountID uint
+	Account   Account
+	OperationID uint
+	Operation OperationTypes
+	Amount    float32
+	CreatedAt time.Time
 }
