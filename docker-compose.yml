@@ -24,8 +24,8 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - ./DataBase/database_init.sql:/docker-entrypoint-initdb.d/init.sql:rw
+      - ./scripts/database_init.sql:/docker-entrypoint-initdb.d/init.sql:rw
     healthcheck:
       test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
-      timeout: 20s
-      retries: 1000
+      timeout: 5s
+      retries: 10

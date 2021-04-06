@@ -1,15 +1,15 @@
-package models
+package mysql
 
 import (
 	"fmt"
+	"github.com/vitormelon/transactions/domain"
+	"github.com/vitormelon/transactions/models"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"os"
 )
 
-var DB *gorm.DB
-
-func ConnectDataBase() {
+func ConnectDataBase() *gorm.DB {
 	dsn := fmt.Sprintf(
 		"%s:%s@tcp(%s:%s)/%s?parseTime=true",
 		os.Getenv("MYSQL_USER"),
@@ -21,11 +21,13 @@ func ConnectDataBase() {
 
 	database, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 
+	//TODO: add log
 	if err != nil {
 		panic("Failed to connect to database!")
 	}
 
-	database.AutoMigrate(&Transaction{}, &Account{}, &OperationTypes{})
+	//TODO: remover isso
+	database.AutoMigrate(&models.Transaction{}, &domain.Account{}, &models.OperationTypes{})
 
-	DB = database
+	return database
 }

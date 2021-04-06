@@ -3,6 +3,7 @@ package controllers
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/vitormelon/transactions/models"
+	"github.com/vitormelon/transactions/repository/mysql"
 	"gorm.io/gorm/clause"
 	"net/http"
 	"time"
@@ -12,7 +13,7 @@ func FindTransaction(c *gin.Context) {
 	id := c.Param("transactionId")
 
 	var transaction models.Transaction
-	err := models.DB.Preload(clause.Associations).First(&transaction, id).Error
+	err := mysql.DB.Preload(clause.Associations).First(&transaction, id).Error
 
 	if err != nil {
 		//TODO: colocar log
@@ -37,7 +38,7 @@ func CreateTransaction(c *gin.Context) {
 		Amount:      input.Amount,
 		CreatedAt:   time.Time{},
 	}
-	models.DB.Preload(clause.Associations).Create(&account)
+	mysql.DB.Preload(clause.Associations).Create(&account)
 
 	c.JSON(http.StatusOK, account)
 }
