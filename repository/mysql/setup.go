@@ -2,7 +2,6 @@ package mysql
 
 import (
 	"fmt"
-	"github.com/vitormelon/transactions/domain"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"os"
@@ -26,7 +25,7 @@ func ConnectDataBase() *gorm.DB {
 	}
 
 	//TODO: remove this
-	database.AutoMigrate(&domain.Transaction{}, &domain.Account{}, &domain.OperationType{})
+	//database.AutoMigrate(&domain.Transaction{}, &domain.Account{}, &domain.OperationType{})
 
 	return database
 }

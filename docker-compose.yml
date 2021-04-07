@@ -12,8 +12,7 @@ services:
     env_file:
       - .env
     depends_on:
-      db:
-        condition: service_healthy
+      - db
 
   db:
     image: mysql:5.7
@@ -25,7 +24,3 @@ services:
       - "3306:3306"
     volumes:
       - ./scripts/database_init.sql:/docker-entrypoint-initdb.d/init.sql:rw
-    healthcheck:
-      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
-      timeout: 5s
-      retries: 10

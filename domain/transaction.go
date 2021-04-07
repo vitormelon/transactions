@@ -7,12 +7,12 @@ import (
 
 type Transaction struct {
 	ID int
-	AccountID int
-	OperationTypeID int
 	Amount float32
 	CreatedAt   time.Time
-	OperationType
-	Account
+	OperationTypeID int
+	OperationType OperationType
+	AccountID int
+	Account Account
 }
 
 type TransactionOutput struct {

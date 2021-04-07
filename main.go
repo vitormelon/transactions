@@ -16,7 +16,6 @@ func main() {
 		c.JSON(http.StatusOK, gin.H{"data": "hello world"})
 	})
 
-
 	mysqlRepository := mysql.ConnectDataBase()
 	accountRepository := mysql.NewMysqlAccountRepository(mysqlRepository)
 	accountPresenter := presenter.NewAccountPresenter()
@@ -28,21 +27,6 @@ func main() {
 
 	handler.NewTransactionHandler(engine, transactionUseCase)
 	handler.NewAccountHandler(engine, accountUseCase)
-	//InsertDefaultOperationTypes(mysqlRepository)
 
 	engine.Run()
 }
-
-//func InsertDefaultOperationTypes(mysqlRepository *gorm.DB) {
-//	insertOperationType("COMPRA A VISTA", mysqlRepository)
-//	insertOperationType("COMPRA PARCELADA", mysqlRepository)
-//	insertOperationType("SAQUE", mysqlRepository)
-//	insertOperationType("PAGAMENTO", mysqlRepository)
-//}
-//
-//func insertOperationType(description string, mysqlRepository *gorm.DB) {
-//	operationType := models.OperationTypes{
-//		Description: description,
-//	}
-//	mysqlRepository.Create(&operationType)
-//}
