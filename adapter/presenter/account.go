@@ -14,5 +14,5 @@ func (accountPresenter accountPresenter) Output(account domain.Account) domain.A
 }
 
 func NewAccountPresenter() domain.AccountPresenter {
-	return accountPresenter{}
+	return &accountPresenter{}
 }

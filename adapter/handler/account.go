@@ -46,8 +46,9 @@ func (accountHandler AccountHandler) Create(context *gin.Context) {
 	context.JSON(http.StatusCreated, account)
 }
 
-func NewAccountHandler(engine *gin.Engine, AccountUseCase domain.AccountUseCase)  {
-	handler := &AccountHandler{AccountUseCase: AccountUseCase}
+func NewAccountHandler(engine *gin.Engine, AccountUseCase domain.AccountUseCase) domain.AccountHandler {
+	handler := &AccountHandler{AccountUseCase}
 	engine.GET("/accounts/:accountId", handler.Find)
 	engine.POST("/accounts", handler.Create)
+	return handler
 }

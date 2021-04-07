@@ -5,7 +5,7 @@ import "github.com/gin-gonic/gin"
 
 type (
 	Account struct {
-		ID             uint `gorm:"primaryKey;autoIncrement"`
+		ID             uint
 		DocumentNumber string
 	}
 
@@ -29,8 +29,8 @@ type (
 	}
 
 	AccountHandler interface {
-		Create(c *gin.Context)
-		Find(c *gin.Context)
+		Create(context *gin.Context)
+		Find(context *gin.Context)
 	}
 
 	AccountPresenter interface {
