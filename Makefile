@@ -1,4 +1,3 @@
-PWD = $(shell pwd -L)
 IMAGE_NAME = transactions_app
 
 up:
@@ -15,3 +14,6 @@ build:
 
 enter:
 	docker-compose exec app bash
+
+test:
+	docker-compose exec app go test -cover ./...
