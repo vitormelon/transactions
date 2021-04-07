@@ -9,8 +9,9 @@ type mysqlAccountRepository struct {
 	DB *gorm.DB
 }
 
-func (mysqlAccountRepository *mysqlAccountRepository) Create(account *domain.Account) error {
-	panic("implement me")
+func (mysqlAccountRepository mysqlAccountRepository) Create(account *domain.Account) error {
+	err := mysqlAccountRepository.DB.Create(&account)
+	return err.Error
 }
 
 func (mysqlAccountRepository *mysqlAccountRepository) Find(id int) (domain.Account, error) {

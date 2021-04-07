@@ -30,7 +30,20 @@ func (accountHandler AccountHandler) Find(context *gin.Context) {
 }
 
 func (accountHandler AccountHandler) Create(context *gin.Context) {
-	panic("implement-me")
+	var accountImput domain.AccountInput
+	err := context.ShouldBindJSON(&accountImput)
+	if err != nil {
+		//TODO: add log
+		context.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	account, err := accountHandler.AccountUseCase.Create(accountImput)
+	if err != nil {
+		//TODO: add log
+		context.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+	}
+	context.JSON(http.StatusCreated, account)
 }
 
 func NewAccountHandler(engine *gin.Engine, AccountUseCase domain.AccountUseCase)  {

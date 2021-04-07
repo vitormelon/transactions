@@ -22,7 +22,7 @@ func main() {
 	mysqlRepository := mysql.ConnectDataBase()
 	accountRepository := mysql.NewMysqlAccountRepository(mysqlRepository)
 	accountPresenter := presenter.NewAccountPresenter()
-	accountUsecase := usecase.NewAccountUsecase(accountRepository, accountPresenter)
+	accountUsecase := usecase.NewAccountUseCase(accountRepository, accountPresenter)
 
 	handler.NewAccountHandler(engine, accountUsecase)
 	//InsertDefaultOperationTypes(mysqlRepository)

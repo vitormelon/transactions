@@ -14,13 +14,17 @@ type (
 		DocumentNumber string `json:"document_number"`
 	}
 
+	AccountInput struct {
+		DocumentNumber string `json:"document_number" binding:"required"`
+	}
+
 	AccountRepository interface {
 		Create(account *Account) error
 		Find(id int) (Account, error)
 	}
 
 	AccountUseCase interface {
-		Create(account *Account) error
+		Create(account AccountInput) (Account, error)
 		Find(id int) (AccountOutput, error)
 	}
 
