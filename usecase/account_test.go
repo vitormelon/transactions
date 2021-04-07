@@ -8,17 +8,18 @@ import (
 
 type accountRepositoryMock struct {}
 
-var documentNumber = "123456789"
+var defaultDocumentNumber = "123456789"
+var defaultId = uint(123)
 
 func (accountRepositoryMock accountRepositoryMock) Find(id int) (domain.Account, error) {
 	return domain.Account{
 		ID:             uint(id),
-		DocumentNumber: documentNumber,
+		DocumentNumber: defaultDocumentNumber,
 	}, nil
 }
 
 func (accountRepositoryMock accountRepositoryMock) Create(account *domain.Account) error {
-	account.ID = 1
+	account.ID = defaultId
 	return nil
 }
 
@@ -35,10 +36,29 @@ func TestAccountUseCase_Find(t *testing.T) {
 		t.Errorf("Id was incorrect, got: %d, want: %d.", account.ID, id)
 	}
 
-	if account.DocumentNumber != documentNumber {
-		t.Errorf("docummentNumber was incorrect, got: %s, want: %s.", account.DocumentNumber, documentNumber)
+	if account.DocumentNumber != defaultDocumentNumber {
+		t.Errorf("docummentNumber was incorrect, got: %s, want: %s.", account.DocumentNumber, defaultDocumentNumber)
+	}
+}
+
+func TestAccountUseCase_Create(t *testing.T) {
+	accountUseCase := getAccountUseCase()
+	documentNumberTest := "321654987"
+	accountInput := domain.AccountInput{
+		DocumentNumber: documentNumberTest,
+	}
+	account, err := accountUseCase.Create(accountInput)
+	if err != nil {
+		t.Error("No error should occur")
 	}
 
+	if account.ID != defaultId {
+		t.Errorf("Id was incorrect, got: %d, want: %d.", account.ID, defaultId)
+	}
+
+	if account.DocumentNumber != documentNumberTest {
+		t.Errorf("docummentNumber was incorrect, got: %s, want: %s.", account.DocumentNumber, documentNumberTest)
+	}
 }
 
 func getAccountUseCase() domain.AccountUseCase {
