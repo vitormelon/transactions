@@ -4,18 +4,33 @@
 
 You need `Docker` and `docker-compose`. Install docker compose [documentation](https://docs.docker.com/compose/install/)
 
-### Commands
-Run application with docker on port `:8080`
+### Principal Commands
 
+- Run application with docker on port `:8080`
 ```shell
 make up
 ```
 
-Show and attach to application logs
-
+- Show and attach to application logs
 ```shell
 make logs
 ```
+
+- Run tests with coverage
+```shell
+make test
+```
+
+## API Endpoints
+
+| Endpoint | Method | Description |
+| :----------------: | :-------------------: | :-------------------: |
+| `/accounts` | `POST` | `Create Account` |
+| `/accounts/{:accountId}` | `GET` | `Get account by id` |
+| `/transactions` | `POST` | `Create Transaction` |
+| `/transactions/{:transactionId}` | `GET` | `Get transaction by id` |
+
+
 
 ### References
 - https://eminetto.medium.com/clean-architecture-using-golang-b63587aa5e3f
